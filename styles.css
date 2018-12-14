@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header {
+    background-color: white;
+    text-align: center;
+    font-size: 65px;
+}
+
+body {
+    background-color:rgb(47, 47, 53);
+}
+
+.scoreboard {
+    font-size: 45px;
+    text-align: center;
+    align-self: center;
+    border: 3px solid white;
+    width: 200px;
+    margin: 20px auto;
+    border-radius: 5px;
+    position: relative;
+}
+.namebadge {
+    background: rgba(90, 6, 6);
+    color: white;
+    border: 3px solid white;
+    border-radius: 5px;
+    font-size: 25px;
+}
+
+#user {
+    position: absolute;
+    top: 10px;
+    left: -25px;
+}
+
+#computer {
+    position: absolute;
+    top: 10px;
+    right: -65px;
+}
+
+.result {
+    text-align: center;
+    font-size: 20px;
+}
+
+.choices{
+    margin: 10px auto;
+    text-align: center;
+}
+
+.choice {
+    display: inline-block;
+}
+
+#action-message {
+    text-align: center;
+    font-size: 20px;
+}
