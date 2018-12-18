@@ -46,10 +46,22 @@ body {
     right: -75px;
 }
 
+.result-container {
+    position: relative;
+    width: 400px;
+    align-self: center;
+    text-align: center;
+    margin: 10px auto;
+    background: white;
+    border: 3px solid white;
+    border-radius: 5px;
+}
+
 .result {
+
     text-align: center;
     font-size: 20px;
-    color: white;
+    color: black;
 }
 
 .choices{
@@ -76,4 +88,14 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: white;
+}
+
+.userChoice {
+    color: rgb(6, 90, 20);
+    font-weight: bold;
+}
+
+.computerChoice {
+    color: rgba(90, 6, 6);
+    font-weight: bold;
 }

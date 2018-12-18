@@ -16,13 +16,23 @@ function win(userChoice, computerChoice) {
     userScore++;
     userScore_span.innerHTML =  userScore;
     computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = capitalizeFirstLetter(userChoice) + " beats " + capitalizeFirstLetter(computerChoice) + ". You win!";
+    result_p.innerHTML =  `
+        <span class="userChoice">${capitalizeFirstLetter(userChoice)}</span>
+        beats
+        <span class="computerChoice">${capitalizeFirstLetter(computerChoice)}</span>
+        . You win!
+        `;
 }
 
 function lose(userChoice, computerChoice) {
     computerScore++;
     computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = capitalizeFirstLetter(computerChoice) + " beats " + capitalizeFirstLetter(userChoice) + ". You lose!";
+    result_p.innerHTML = `
+    <span class="computerChoice">${capitalizeFirstLetter(computerChoice)}</span>
+    beats
+    <span class="userChoice">${capitalizeFirstLetter(userChoice)}</span>
+    . You lose!
+    `;
 }
 
 function draw(userChoice, computerChoice) {
