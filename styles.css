@@ -16,6 +16,7 @@ body {
 
 .scoreboard {
     font-size: 45px;
+    padding: 10px;
     text-align: center;
     align-self: center;
     border: 3px solid white;
@@ -34,21 +35,20 @@ body {
 
 #user {
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: -25px;
     background: rgb(6, 90, 20);
 }
 
 #computer {
     position: absolute;
-    top: 10px;
-    right: -65px;
+    top: 15px;
+    right: -75px;
 }
 
 .result {
     text-align: center;
     font-size: 20px;
-    font-weight: bold;
     color: white;
 }
 

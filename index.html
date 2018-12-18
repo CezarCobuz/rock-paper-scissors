@@ -5,27 +5,27 @@
     </head>
     <body>
         <header>
-            Rock Papper Scissors
+            Rock Paper Scissors
         </header>
 
         <div class="scoreboard">
-            0:0
             <div class="namebadge" id="user">
                 user
             </div>
             <div class="namebadge" id="computer">
                 computer
             </div>
+            <span id="user-score">0</span>:<span id="computer-score">0</span>
         </div>
         <div class="result">
-            <p>Papper covers rock, you win!</p>
+            <p>Paper covers rock, you win!</p>
         </div>
 
         <div class="choices">
             <div id="rock" class="choice">
                 <img src="assets/rock-trans.png" alt="">
             </div>
-            <div id="papper" class="choice">
+            <div id="paper" class="choice">
                 <img src="assets/papper-trans.png" alt="">
             </div>
             <div id="scissors" class="choice">
@@ -34,5 +34,6 @@
         </div>
 
         <p id="action-message">Make your move!</p>
+        <script src="app.js"></script>
     </body>
 </html>
