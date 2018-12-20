@@ -57,6 +57,8 @@ function win(userChoice, computerChoice) {
         <span class="computerChoice">${capitalizeFirstLetter(computerChoice)}</span>
         . You win!
         `;
+    document.getElementById(userChoice).classList.add('green-glow');
+    setTimeout(() => {document.getElementById(userChoice).classList.remove('green-glow')}, 250);
 }
 
 function lose(userChoice, computerChoice) {
@@ -70,6 +72,8 @@ function lose(userChoice, computerChoice) {
     <span class="userChoice">${capitalizeFirstLetter(userChoice)}</span>
     . You lose!
     `;
+    document.getElementById(userChoice).classList.add('red-glow');
+    setTimeout(() => {document.getElementById(userChoice).classList.remove('red-glow')}, 250);
 }
 
 function draw(userChoice, computerChoice) {
@@ -78,6 +82,8 @@ function draw(userChoice, computerChoice) {
     getRobotHand(computerChoice);
     getHumanHand(userChoice);
     result_p.innerHTML = "Draw!";
+    document.getElementById(userChoice).classList.add('grey-glow');
+    setTimeout(() => {document.getElementById(userChoice).classList.remove('grey-glow')}, 250);
 }
 
 function getComputerChoice() {
@@ -108,17 +114,11 @@ function game(userChoice) {
 }
 
 function main() {
-    rock_div.addEventListener('click', function() {
-        game('rock');
-    })
+    rock_div.addEventListener('click', () => game('rock'));
 
-    paper_div.addEventListener('click', function() {
-        game('paper');
-    })
+    paper_div.addEventListener('click', () => game('paper'));
 
-    scissors_div.addEventListener('click', function() {
-        game('scissors');
-    })
+    scissors_div.addEventListener('click', () => game('scissors'));
 }
 
 main();
