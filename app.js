@@ -48,6 +48,8 @@ function getRobotHand(computerChoice) {
 function win(userChoice, computerChoice) {
     userScore++;
     userScore_span.innerHTML =  userScore;
+    userScore_span.classList.add('green-glow-score');
+    setTimeout(() => { userScore_span.classList.remove('green-glow-score')}, 150);
     computerScore_span.innerHTML = computerScore;
     getRobotHand(computerChoice);
     getHumanHand(userChoice);
@@ -64,6 +66,8 @@ function win(userChoice, computerChoice) {
 function lose(userChoice, computerChoice) {
     computerScore++;
     computerScore_span.innerHTML = computerScore;
+    computerScore_span.classList.add('red-glow-score');
+    setTimeout(() => { computerScore_span.classList.remove('red-glow-score')}, 150);
     getRobotHand(computerChoice);
     getHumanHand(userChoice);
     result_p.innerHTML = `
@@ -79,6 +83,8 @@ function lose(userChoice, computerChoice) {
 function draw(userChoice, computerChoice) {
     drawScore++;
     drawScore_span.innerHTML = drawScore;
+    drawScore_span.classList.add('grey-glow-score');
+    setTimeout(() => { drawScore_span.classList.remove('grey-glow-score')}, 150);
     getRobotHand(computerChoice);
     getHumanHand(userChoice);
     result_p.innerHTML = "Draw!";
