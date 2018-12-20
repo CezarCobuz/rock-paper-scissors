@@ -46,22 +46,26 @@ body {
     right: -75px;
 }
 
+#draw {
+    position: absolute;
+    background: black;
+    bottom:-25px;
+    left:60px;
+}
+
 .result-container {
     position: relative;
     width: 400px;
     align-self: center;
     text-align: center;
     margin: 10px auto;
-    background: white;
-    border: 3px solid white;
-    border-radius: 5px;
 }
 
 .result {
 
     text-align: center;
     font-size: 20px;
-    color: black;
+    color: white;
 }
 
 .choices{
@@ -98,4 +102,14 @@ body {
 .computerChoice {
     color: rgba(90, 6, 6);
     font-weight: bold;
+}
+
+.user-score {
+    color:  rgb(6, 90, 20);
+    margin-right: 10px;
+}
+
+.computer-score {
+    color:  rgba(90, 6, 6);
+    margin-left: 10px;
 }
