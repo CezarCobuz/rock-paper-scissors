@@ -1,7 +1,21 @@
+// === AI SWITCH ===
 let roundNumber = 1;
 let AI_ON = false;
+
+// === MOST RECENT PAST ACTION & RESULT
 let humanPreviousGesture;
 let previousHumanResult;
+
+// === AI COUNTING ===
+// AT HUMAN WIN
+let nrOfTimesHumanAlternatesAtWin = 0;
+let nrOfTimesHumanRepeatsAtWin = 0;
+// AT HUMAN LOSE
+let nrOfTimesHumanAlternatesAtLose = 0;
+let nrOfTimesHumanRepeatsAtLose = 0;
+// AT DRAW
+let nrOfTimesHumanAlternatesAtDraw = 0;
+let nrOfTimesHumanRepeatsAtDraw = 0;
 
 function runAI() {
     let beatWith;

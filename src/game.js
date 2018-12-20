@@ -64,6 +64,11 @@ function lose(userChoice, computerChoice) {
     `;
     document.getElementById(userChoice).classList.add('red-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('red-glow')}, 250);
+    //TODO ADD TO ALL CASES
+    if (userChoice == humanPreviousGesture) {
+        nrOfTimesHumanRepeatsAtLose++;
+    }
+    console.log('nrOfTimesHumanRepeatsAtLose',nrOfTimesHumanRepeatsAtLose);
     previousHumanResult = 'lose';
 }
 
