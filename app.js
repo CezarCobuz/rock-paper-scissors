@@ -11,9 +11,24 @@ const paper_div = document.getElementById("paper");
 const scissors_div = document.getElementById("scissors");
 const result_container_div = document.getElementById("result-container");
 const result_img_div = document.getElementById("result-img");
+const result_img_human_div = document.getElementById("human-img");
 
 function capitalizeFirstLetter (word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+function getHumanHand(userChoice) {
+    switch (userChoice) {
+        case "paper":
+            result_img_human_div.innerHTML = `<img src="assets/paper-hand-human.png" alt="paper-human">`;
+            break;
+        case "rock":
+            result_img_human_div.innerHTML = `<img src="assets/rock-hand-human.png" alt="rock-human">`;
+            break;
+        case "scissors":
+            result_img_human_div.innerHTML = `<img src="assets/scissors-hand-human.png" alt="scissors-human">`;
+            break;
+    }
 }
 
 function getRobotHand(computerChoice) {
@@ -35,6 +50,7 @@ function win(userChoice, computerChoice) {
     userScore_span.innerHTML =  userScore;
     computerScore_span.innerHTML = computerScore;
     getRobotHand(computerChoice);
+    getHumanHand(userChoice);
     result_p.innerHTML =  `
         <span class="userChoice">${capitalizeFirstLetter(userChoice)}</span>
         beats
@@ -47,6 +63,7 @@ function lose(userChoice, computerChoice) {
     computerScore++;
     computerScore_span.innerHTML = computerScore;
     getRobotHand(computerChoice);
+    getHumanHand(userChoice);
     result_p.innerHTML = `
     <span class="computerChoice">${capitalizeFirstLetter(computerChoice)}</span>
     beats
@@ -59,6 +76,7 @@ function draw(userChoice, computerChoice) {
     drawScore++;
     drawScore_span.innerHTML = drawScore;
     getRobotHand(computerChoice);
+    getHumanHand(userChoice);
     result_p.innerHTML = "Draw!";
 }
 
