@@ -1,18 +1,3 @@
-let userScore = 0;
-let computerScore = 0;
-let drawScore = 0;
-const userScore_span = document.getElementById("user-score");
-const computerScore_span = document.getElementById("computer-score");
-const drawScore_span = document.getElementById("draw-score");
-const scoreBoard_div = document.querySelector(".scoreboard");
-const result_p = document.querySelector(".result > p");
-const rock_div = document.getElementById("rock");
-const paper_div = document.getElementById("paper");
-const scissors_div = document.getElementById("scissors");
-const result_container_div = document.getElementById("result-container");
-const result_img_div = document.getElementById("result-img");
-const result_img_human_div = document.getElementById("human-img");
-
 function capitalizeFirstLetter (word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
@@ -61,6 +46,7 @@ function win(userChoice, computerChoice) {
         `;
     document.getElementById(userChoice).classList.add('green-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('green-glow')}, 250);
+    previousHumanResult = 'win';
 }
 
 function lose(userChoice, computerChoice) {
@@ -78,6 +64,7 @@ function lose(userChoice, computerChoice) {
     `;
     document.getElementById(userChoice).classList.add('red-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('red-glow')}, 250);
+    previousHumanResult = 'lose';
 }
 
 function draw(userChoice, computerChoice) {
@@ -90,16 +77,25 @@ function draw(userChoice, computerChoice) {
     result_p.innerHTML = "Draw!";
     document.getElementById(userChoice).classList.add('grey-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('grey-glow')}, 250);
+    previousHumanResult = 'draw';
 }
 
 function getComputerChoice() {
     const choices = ['rock','paper', 'scissors'];
+    if (AI_ON){
+        return runAI();
+    }
     const randomNumber = Math.floor(Math.random()*3);
     return choices[randomNumber];
 }
 
 function game(userChoice) {
-    const computerChoice= getComputerChoice();
+    if (roundNumber > 1) {
+        AI_ON = true;
+    }
+    console.log('roundNumber',roundNumber);
+    console.log('AI_ON',AI_ON);
+    const computerChoice = getComputerChoice();
     switch (userChoice + " " + computerChoice) {
         case "rock scissors":
         case "paper rock":
@@ -117,14 +113,8 @@ function game(userChoice) {
             draw(userChoice, computerChoice);
             break;
     }
+    humanPreviousGesture = userChoice;
+    console.log('humanPreviousGesture',humanPreviousGesture);
+    console.log('previousHumanResult',previousHumanResult);
+    roundNumber++;
 }
-
-function main() {
-    rock_div.addEventListener('click', () => game('rock'));
-
-    paper_div.addEventListener('click', () => game('paper'));
-
-    scissors_div.addEventListener('click', () => game('scissors'));
-}
-
-main();
