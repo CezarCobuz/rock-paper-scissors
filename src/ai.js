@@ -5,19 +5,28 @@ let AI_ON = false;
 // === MOST RECENT PAST ACTION & RESULT
 let humanPreviousGesture;
 let previousHumanResult;
+let aiPreviousGesture;
 
 // === AI COUNTING ===
 // AT HUMAN WIN
 let nrOfTimesHumanRepeatsAtWin = 0;
 let nrOfTimesHumanAlternatesAtWin = 0;
+// ALTERNATION PATTERN
+let nrOfTimesHumanAlternatesAtWinToAiChoice = 0;
+let nrOfTimesHumanAlternatesAtWinToWhatAiWouldHaveBeaten = 0;
+
 // AT HUMAN LOSE
 let nrOfTimesHumanRepeatsAtLose = 0;
 let nrOfTimesHumanAlternatesAtLose = 0;
+// ALTERNATION PATTERN
+let nrOfTimesHumanAlternatesAtLoseToAiChoice = 0;
+let nrOfTimesHumanAlternatesAtLoseToWhatHumanWouldHaveBeaten = 0;
+
 // AT DRAW
 let nrOfTimesHumanRepeatsAtDraw = 0;
 let nrOfTimesHumanAlternatesAtDraw = 0;
 
-function updateFrequencyRepeateAlternate(userChoice, previousHumanResult) {
+function updateFrequencyRepeateAlternate(userChoice, previousHumanResult, humanPreviousGesture, aiPreviousGesture) {
     // FOR HUMAN STATEGY FIND
     if (roundNumber > 1) {
         switch (previousHumanResult) {
@@ -25,6 +34,7 @@ function updateFrequencyRepeateAlternate(userChoice, previousHumanResult) {
                 if (userChoice == humanPreviousGesture) {
                     nrOfTimesHumanRepeatsAtDraw++;
                 } else {
+                    // TODO TREAT BOTH CASES, ADD EXTRA COUNTERS
                     nrOfTimesHumanAlternatesAtDraw++;
                 }
                 break;
@@ -33,12 +43,24 @@ function updateFrequencyRepeateAlternate(userChoice, previousHumanResult) {
                     nrOfTimesHumanRepeatsAtLose++;
                 } else {
                     nrOfTimesHumanAlternatesAtLose++;
+                    if (userChoice == aiPreviousGesture) {
+                        nrOfTimesHumanAlternatesAtLoseToAiChoice++;
+                    }
+                    if (userChoice == beatThis(aiPreviousGesture)) {
+                        nrOfTimesHumanAlternatesAtLoseToWhatHumanWouldHaveBeaten++;
+                    }
                 }
             case 'win':
                 if (userChoice == humanPreviousGesture) {
                     nrOfTimesHumanRepeatsAtWin++;
                 } else {
                     nrOfTimesHumanAlternatesAtWin++;
+                    if (userChoice == aiPreviousGesture) {
+                        nrOfTimesHumanAlternatesAtWinToAiChoice++;
+                    }
+                    if (beatThis(userChoice) == aiPreviousGesture) {
+                        nrOfTimesHumanAlternatesAtWinToWhatAiWouldHaveBeaten++;
+                    }
                 }
         }
     }

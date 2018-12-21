@@ -1,21 +1,21 @@
 function win(userChoice, computerChoice) {
     userScore++;
     visualUpdateWin(userChoice,computerChoice);
-    updateFrequencyRepeateAlternate(userChoice,previousHumanResult);
+    updateFrequencyRepeateAlternate(userChoice, previousHumanResult, humanPreviousGesture, aiPreviousGesture);
     previousHumanResult = 'win';
 }
 
 function lose(userChoice, computerChoice) {
     computerScore++;
     visualUpdateLose(userChoice,computerChoice);
-    updateFrequencyRepeateAlternate(userChoice,previousHumanResult);
+    updateFrequencyRepeateAlternate(userChoice, previousHumanResult, humanPreviousGesture, aiPreviousGesture);
     previousHumanResult = 'lose';
 }
 
 function draw(userChoice, computerChoice) {
     drawScore++;
     visualUpdateDraw(userChoice,computerChoice);
-    updateFrequencyRepeateAlternate(userChoice,previousHumanResult);
+    updateFrequencyRepeateAlternate(userChoice, previousHumanResult, humanPreviousGesture, aiPreviousGesture);
     previousHumanResult = 'draw';
 }
 
@@ -57,6 +57,7 @@ function game(userChoice) {
             break;
     }
     humanPreviousGesture = userChoice;
+    aiPreviousGesture = computerChoice;
     visualUpdateRoundNumber(roundNumber);
     roundNumber++;
 }
