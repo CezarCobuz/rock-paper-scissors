@@ -17,29 +17,29 @@ let nrOfTimesHumanAlternatesAtLose = 0;
 let nrOfTimesHumanRepeatsAtDraw = 0;
 let nrOfTimesHumanAlternatesAtDraw = 0;
 
-function updateFrequencyRepeateAlternate(userChoice, previousHumanResult, currentResult) {
+function updateFrequencyRepeateAlternate(userChoice, previousHumanResult) {
     // FOR HUMAN STATEGY FIND
     if (roundNumber > 1) {
-        if (previousHumanResult == 'draw') {
-            if (userChoice == humanPreviousGesture) {
-                nrOfTimesHumanRepeatsAtDraw++;
-            } else {
-                nrOfTimesHumanAlternatesAtDraw++;
-            }
-        }
-        if (previousHumanResult == 'lose') {
-            if (userChoice == humanPreviousGesture) {
-                nrOfTimesHumanRepeatsAtLose++;
-            } else {
-                nrOfTimesHumanAlternatesAtLose++;
-            }
-        }
-        if (previousHumanResult == 'win') {
-            if (userChoice == humanPreviousGesture) {
-                nrOfTimesHumanRepeatsAtWin++;
-            } else {
-                nrOfTimesHumanAlternatesAtWin++;
-            }
+        switch (previousHumanResult) {
+            case 'draw':
+                if (userChoice == humanPreviousGesture) {
+                    nrOfTimesHumanRepeatsAtDraw++;
+                } else {
+                    nrOfTimesHumanAlternatesAtDraw++;
+                }
+                break;
+            case 'lose':
+                if (userChoice == humanPreviousGesture) {
+                    nrOfTimesHumanRepeatsAtLose++;
+                } else {
+                    nrOfTimesHumanAlternatesAtLose++;
+                }
+            case 'win':
+                if (userChoice == humanPreviousGesture) {
+                    nrOfTimesHumanRepeatsAtWin++;
+                } else {
+                    nrOfTimesHumanAlternatesAtWin++;
+                }
         }
     }
     logCountersAI();

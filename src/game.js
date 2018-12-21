@@ -47,7 +47,7 @@ function win(userChoice, computerChoice) {
     document.getElementById(userChoice).classList.add('green-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('green-glow')}, 250);
 
-    updateFrequencyRepeateAlternate(userChoice,previousHumanResult,'win');
+    updateFrequencyRepeateAlternate(userChoice,previousHumanResult);
     previousHumanResult = 'win';
 }
 
@@ -67,7 +67,7 @@ function lose(userChoice, computerChoice) {
     document.getElementById(userChoice).classList.add('red-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('red-glow')}, 250);
 
-    updateFrequencyRepeateAlternate(userChoice,previousHumanResult,'lose');
+    updateFrequencyRepeateAlternate(userChoice,previousHumanResult);
     previousHumanResult = 'lose';
 }
 
@@ -82,7 +82,7 @@ function draw(userChoice, computerChoice) {
     document.getElementById(userChoice).classList.add('grey-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('grey-glow')}, 250);
 
-    updateFrequencyRepeateAlternate(userChoice,previousHumanResult,'draw');
+    updateFrequencyRepeateAlternate(userChoice,previousHumanResult);
     previousHumanResult = 'draw';
 }
 
