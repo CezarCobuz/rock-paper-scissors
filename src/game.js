@@ -46,6 +46,8 @@ function win(userChoice, computerChoice) {
         `;
     document.getElementById(userChoice).classList.add('green-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('green-glow')}, 250);
+
+    updateFrequencyRepeateAlternate(userChoice,previousHumanResult,'win');
     previousHumanResult = 'win';
 }
 
@@ -64,11 +66,8 @@ function lose(userChoice, computerChoice) {
     `;
     document.getElementById(userChoice).classList.add('red-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('red-glow')}, 250);
-    //TODO ADD TO ALL CASES
-    if (userChoice == humanPreviousGesture) {
-        nrOfTimesHumanRepeatsAtLose++;
-    }
-    console.log('nrOfTimesHumanRepeatsAtLose',nrOfTimesHumanRepeatsAtLose);
+
+    updateFrequencyRepeateAlternate(userChoice,previousHumanResult,'lose');
     previousHumanResult = 'lose';
 }
 
@@ -82,6 +81,8 @@ function draw(userChoice, computerChoice) {
     result_p.innerHTML = "Draw!";
     document.getElementById(userChoice).classList.add('grey-glow');
     setTimeout(() => {document.getElementById(userChoice).classList.remove('grey-glow')}, 250);
+
+    updateFrequencyRepeateAlternate(userChoice,previousHumanResult,'draw');
     previousHumanResult = 'draw';
 }
 
@@ -96,10 +97,13 @@ function getComputerChoice() {
 
 function game(userChoice) {
     if (roundNumber > 1) {
-        AI_ON = true;
+        //TODO switch
+        AI_ON = false;
     }
     console.log('roundNumber',roundNumber);
     console.log('AI_ON',AI_ON);
+    console.log('humanPreviousGesture',humanPreviousGesture);
+    console.log('previousHumanResult',previousHumanResult);
     const computerChoice = getComputerChoice();
     switch (userChoice + " " + computerChoice) {
         case "rock scissors":
@@ -119,7 +123,5 @@ function game(userChoice) {
             break;
     }
     humanPreviousGesture = userChoice;
-    console.log('humanPreviousGesture',humanPreviousGesture);
-    console.log('previousHumanResult',previousHumanResult);
     roundNumber++;
 }
