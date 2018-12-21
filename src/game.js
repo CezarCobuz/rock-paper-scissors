@@ -86,25 +86,26 @@ function draw(userChoice, computerChoice) {
     previousHumanResult = 'draw';
 }
 
-function getComputerChoice() {
+function getComputerChoice(userChoice) {
     const choices = ['rock','paper', 'scissors'];
     if (AI_ON){
-        return runAI();
+        return runAI(userChoice);
     }
+
+    // RANDOM FOR FIRST ROUND
     const randomNumber = Math.floor(Math.random()*3);
     return choices[randomNumber];
 }
 
 function game(userChoice) {
     if (roundNumber > 1) {
-        //TODO switch
-        AI_ON = false;
+        AI_ON = true;
     }
     console.log('roundNumber',roundNumber);
     console.log('AI_ON',AI_ON);
     console.log('humanPreviousGesture',humanPreviousGesture);
     console.log('previousHumanResult',previousHumanResult);
-    const computerChoice = getComputerChoice();
+    const computerChoice = getComputerChoice(userChoice);
     switch (userChoice + " " + computerChoice) {
         case "rock scissors":
         case "paper rock":
