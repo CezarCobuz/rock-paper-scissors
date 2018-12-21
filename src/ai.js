@@ -36,9 +36,9 @@ function updateFrequencyRepeateAlternate(userChoice, previousHumanResult, curren
         }
         if (previousHumanResult == 'win') {
             if (userChoice == humanPreviousGesture) {
-                nrOfTimesHumanRepeatsAtLose++;
+                nrOfTimesHumanRepeatsAtWin++;
             } else {
-                nrOfTimesHumanAlternatesAtLose++;
+                nrOfTimesHumanAlternatesAtWin++;
             }
         }
     }
