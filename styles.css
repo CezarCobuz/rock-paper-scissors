@@ -11,21 +11,21 @@ body {
 
 .scoreboard {
     font-size: 35px;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
     align-self: center;
     border: 3px solid white;
     width: 200px;
     height: 110px;
     margin: 20px auto;
-    border-radius: 5px;
+    border-radius: 25px;
     position: relative;
 }
 .namebadge {
     background: rgba(90, 6, 6);
     color: white;
     border: 3px solid white;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 25px;
 }
 
@@ -47,6 +47,14 @@ body {
     background: black;
     bottom:-25px;
     left:60px;
+}
+
+#roundNumber {
+    position: absolute;
+    background:grey;
+    color: black;
+    top:-20px;
+    right:40px;
 }
 
 .result-container {

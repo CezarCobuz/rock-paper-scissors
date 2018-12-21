@@ -3,6 +3,7 @@ let computerScore = 0;
 let drawScore = 0;
 const userScore_span = document.getElementById("user-score");
 const computerScore_span = document.getElementById("computer-score");
+const roundNumber_span = document.getElementById("roundNumber");
 const drawScore_span = document.getElementById("draw-score");
 const scoreBoard_div = document.querySelector(".scoreboard");
 const result_p = document.querySelector(".result > p");
