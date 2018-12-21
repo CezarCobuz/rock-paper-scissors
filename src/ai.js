@@ -87,7 +87,7 @@ function runAI(userChoice) {
             console.log('+++ humanStrategy',humanStrategy);
             switch (humanStrategy) {
                 case 'repeats':
-                    return beatThis(userChoice);
+                    return beatThis(humanPreviousGesture);
                     break;
                 case 'alternates':
                     // TODO TREAT BOTH CASES, ADD EXTRA COUNTERS
@@ -105,7 +105,7 @@ function runAI(userChoice) {
             console.log('+++ humanStrategy',humanStrategy);
             switch (humanStrategy) {
                 case 'repeats':
-                    return beatThis(userChoice);
+                    return beatThis(humanPreviousGesture);
                     break;
                 case 'alternates':
                     // TODO TREAT BOTH CASES, ADD EXTRA COUNTERS
@@ -121,7 +121,7 @@ function runAI(userChoice) {
             console.log('+++ humanStrategy',humanStrategy);
             switch (humanStrategy) {
                 case 'repeats':
-                    return beatThis(userChoice);
+                    return beatThis(humanPreviousGesture);
                     break;
                 case 'alternates':
                     // TODO TREAT BOTH CASES, ADD EXTRA COUNTERS
