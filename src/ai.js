@@ -6,6 +6,7 @@ let AI_ON = false;
 let humanPreviousGesture;
 let previousHumanResult;
 let aiPreviousGesture;
+let computerChoice;
 
 // === AI COUNTING ===
 // AT HUMAN WIN
@@ -70,8 +71,12 @@ function updateFrequencyRepeateAlternate(userChoice, previousHumanResult, humanP
 function logCountersAI() {
     console.log('nrOfTimesHumanRepeatsAtWin',nrOfTimesHumanRepeatsAtWin);
     console.log('nrOfTimesHumanAlternatesAtWin',nrOfTimesHumanAlternatesAtWin);
+    console.log('\tnrOfTimesHumanAlternatesAtWinToAiChoice',nrOfTimesHumanAlternatesAtWinToAiChoice);
+    console.log('\tnrOfTimesHumanAlternatesAtWinToWhatAiWouldHaveBeaten',nrOfTimesHumanAlternatesAtWinToWhatAiWouldHaveBeaten);
     console.log('nrOfTimesHumanRepeatsAtLose',nrOfTimesHumanRepeatsAtLose);
     console.log('nrOfTimesHumanAlternatesAtLose',nrOfTimesHumanAlternatesAtLose);
+    console.log('\tnrOfTimesHumanAlternatesAtLoseToAiChoice',nrOfTimesHumanAlternatesAtLoseToAiChoice);
+    console.log('\tnrOfTimesHumanAlternatesAtLoseToWhatHumanWouldHaveBeaten',nrOfTimesHumanAlternatesAtLoseToWhatHumanWouldHaveBeaten);
     console.log('nrOfTimesHumanRepeatsAtDraw',nrOfTimesHumanRepeatsAtDraw);
     console.log('nrOfTimesHumanAlternatesAtDraw',nrOfTimesHumanAlternatesAtDraw);
 }
@@ -84,7 +89,17 @@ function getStategy(nrRepeats, nrAlternates) {
     }
 }
 
+function getStategyAtAlternate(nrAlternatesToAi, nrAlternatesToBeat) {
+    if (nrAlternatesToAi > nrAlternatesToBeat) {
+        return 'copiesAI';
+    } else {
+        return 'beatsCurentHC';
+    }
+
+}
+
 function beatThis(gesture) {
+    let beatWith;
     switch (gesture) {
         case 'rock':
             beatWith = 'paper';
@@ -101,52 +116,65 @@ function beatThis(gesture) {
 
 function runAI(userChoice) {
     let choices = ['rock','paper', 'scissors'];
-    let beatWith;
     let humanStrategy;
+    let humanAltStrategy;
+    console.log('\t\t\t\t\thumanPreviousGesture',humanPreviousGesture);
+    console.log('\t\t\t\t\tpreviousHumanResult before swithch',previousHumanResult);
     switch (previousHumanResult) {
         case 'win':
             humanStrategy = getStategy(nrOfTimesHumanRepeatsAtWin, nrOfTimesHumanAlternatesAtWin);
-            console.log('+++ humanStrategy',humanStrategy);
+            console.log('+++ humanStrategy',humanStrategy,'at win');
             switch (humanStrategy) {
                 case 'repeats':
                     return beatThis(humanPreviousGesture);
                     break;
                 case 'alternates':
-                    // TODO TREAT BOTH CASES, ADD EXTRA COUNTERS
-                    let aiChoices = choices;
-                    let indexOfRemoved = aiChoices.indexOf(userChoice);
-                    console.log('+++',aiChoices);
-                    aiChoices.splice(indexOfRemoved,1);
-                    console.log('+++',aiChoices);
-                    return aiChoices[Math.floor(Math.random()*2)];
+                    humanAltStrategy = getStategyAtAlternate(nrOfTimesHumanAlternatesAtWinToAiChoice, nrOfTimesHumanAlternatesAtWinToWhatAiWouldHaveBeaten);
+                    console.log('\t+++humanAltStrategy',humanAltStrategy);
+                    switch (humanAltStrategy) {
+                        case 'copiesAI':
+                            console.log('\t\t+++ from runAI WIN returning...',humanPreviousGesture);
+                            return humanPreviousGesture;
+                            break;
+                        case 'beatsCurentHC':
+                            return  beatThis(beatThis(humanPreviousGesture));
+                            break;
+                    }
                     break;
             }
             break;
         case 'lose':
             humanStrategy = getStategy(nrOfTimesHumanRepeatsAtLose, nrOfTimesHumanAlternatesAtLose);
-            console.log('+++ humanStrategy',humanStrategy);
+            console.log('+++ humanStrategy',humanStrategy,'at lose');
             switch (humanStrategy) {
                 case 'repeats':
                     return beatThis(humanPreviousGesture);
                     break;
                 case 'alternates':
-                    // TODO TREAT BOTH CASES, ADD EXTRA COUNTERS
-                    let aiChoices = choices;
-                    let indexOfRemoved = aiChoices.indexOf(userChoice);
-                    aiChoices.splice(indexOfRemoved,1);
-                    return aiChoices[Math.floor(Math.random()*2)];
+                    console.log('\t\t\t\t\thumanPreviousGesture',humanPreviousGesture,'in case lose alternates');
+                    humanAltStrategy = getStategyAtAlternate(nrOfTimesHumanAlternatesAtLoseToAiChoice, nrOfTimesHumanAlternatesAtLoseToWhatHumanWouldHaveBeaten);
+                    console.log('\t+++humanAltStrategy',humanAltStrategy);
+                    switch (humanAltStrategy) {
+                        case 'copiesAI':
+                            console.log('\t\t+++ from runAI LOSE returning...',beatThis(beatThis(humanPreviousGesture)));
+                            return beatThis(beatThis(humanPreviousGesture));
+                            break;
+                        case 'beatsCurentHC':
+                            return humanPreviousGesture;
+                            break;
+                    }
                     break;
             }
             break;
         case 'draw':
             humanStrategy = getStategy(nrOfTimesHumanRepeatsAtDraw, nrOfTimesHumanAlternatesAtDraw);
-            console.log('+++ humanStrategy',humanStrategy);
+            console.log('+++ humanStrategy',humanStrategy,'at draw');
             switch (humanStrategy) {
                 case 'repeats':
                     return beatThis(humanPreviousGesture);
                     break;
                 case 'alternates':
-                    // TODO TREAT BOTH CASES, ADD EXTRA COUNTERS
+                    // ADDS RANDOM FOR MASKING ANTI-HUMAN-STRATEGY
                     let aiChoices = choices;
                     let indexOfRemoved = aiChoices.indexOf(userChoice);
                     aiChoices.splice(indexOfRemoved,1);
